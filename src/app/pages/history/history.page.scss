@@ -1,0 +1,140 @@
+$color-success: #ABC270;
+$color-attention: #FEC868;
+$color-pending: #FDA769;
+$color-text: #473C33;
+$color-white: #FFFFFF;
+
+.history-container {
+  padding: 20px;
+
+  .page-header {
+    margin-bottom: 25px;
+
+    h1 {
+      font-size: 28px;
+      color: $color-text;
+      margin: 0;
+      font-weight: 700;
+    }
+  }
+
+  .child-selector {
+    margin-bottom: 25px;
+
+    select {
+      width: 100%;
+      padding: 12px;
+      border: 2px solid #ddd;
+      border-radius: 8px;
+      font-size: 14px;
+      color: $color-text;
+      background-color: $color-white;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s ease;
+
+      &:hover {
+        border-color: $color-success;
+      }
+
+      &:focus {
+        outline: none;
+        border-color: $color-success;
+        box-shadow: 0 0 0 3px rgba(171, 194, 112, 0.1);
+      }
+    }
+  }
+
+  .vaccine-timeline {
+    .timeline-year {
+      margin-bottom: 30px;
+
+      .year-header {
+        font-size: 20px;
+        font-weight: 700;
+        color: $color-text;
+        margin: 0 0 15px 0;
+        padding-bottom: 10px;
+        border-bottom: 2px solid $color-success;
+      }
+
+      .vaccines-in-year {
+        .timeline-item {
+          display: flex;
+          gap: 15px;
+          margin-bottom: 15px;
+          position: relative;
+
+          .timeline-marker {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: $color-white;
+            font-size: 18px;
+            font-weight: 700;
+            flex-shrink: 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+          }
+
+          .timeline-content {
+            padding-top: 5px;
+
+            h4 {
+              margin: 0 0 3px 0;
+              font-size: 15px;
+              color: $color-text;
+              font-weight: 600;
+            }
+
+            .vaccine-date {
+              margin: 0;
+              color: #999;
+              font-size: 13px;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .empty-state {
+    text-align: center;
+    padding: 40px 20px;
+    color: #999;
+
+    p {
+      font-size: 16px;
+    }
+  }
+
+  .loading {
+    text-align: center;
+    padding: 40px 20px;
+    color: #999;
+  }
+}
+
+@media (max-width: 768px) {
+  .history-container {
+    padding: 15px;
+
+    .page-header h1 {
+      font-size: 24px;
+    }
+
+    .vaccine-timeline {
+      .timeline-year .vaccines-in-year .timeline-item {
+        gap: 12px;
+
+        .timeline-marker {
+          width: 35px;
+          height: 35px;
+          font-size: 16px;
+        }
+      }
+    }
+  }
+}

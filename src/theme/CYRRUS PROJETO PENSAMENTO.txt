@@ -1,0 +1,465 @@
+Imagine que uma startup está desenvolvendo uma plataforma voltada ao acompanhamento da saúde infantil.
+
+O primeiro módulo será responsável por auxiliar pais e responsáveis no acompanhamento da jornada de vacinação das crianças, substituindo parte da dependência da carteira física de vacinação.
+
+Seu desafio será propor e desenvolver uma solução digital utilizando:
+
+Ionic Framework c/ Angular
+
+Angular Framework
+
+Não existe uma solução única. Você terá liberdade para definir a experiência do usuário, a organização das telas, os fluxos de navegação e a forma como as informações serão apresentadas.
+
+Para esse desafio, eu proporia uma solução mobile usando Ionic + Angular focada em simplicidade para pais e responsáveis.
+
+📱 Aplicativo: Vacina Kids
+Objetivo
+
+Permitir que pais acompanhem o calendário de vacinação infantil digitalmente, recebam lembretes e tenham acesso rápido ao histórico de vacinas.
+
+👶 Funcionalidades Principais
+1. Cadastro da Criança
+
+Dados básicos:
+
+Nome
+Data de nascimento
+Sexo
+Peso
+Altura
+Foto
+2. Dashboard Inicial
+
+Ao abrir o aplicativo:
+
+✅ Quantidade de vacinas aplicadas
+
+⏳ Próxima vacina
+
+🚨 Vacinas atrasadas
+
+📅 Calendário vacinal
+
+Exemplo:
+
+Olá, Amanda!
+
+Pedro Silva
+3 anos e 2 meses
+
+✔ 12 vacinas aplicadas
+⏳ Próxima: Febre Amarela
+📅 20/08/2026
+3. Carteira Digital de Vacinação
+
+Lista de todas as vacinas.
+
+Vacina	Status
+BCG	✅ Aplicada
+Hepatite B	✅ Aplicada
+Pentavalente	✅ Aplicada
+Febre Amarela	⏳ Pendente
+Tríplice Viral	🚨 Atrasada
+4. Detalhes da Vacina
+
+Ao clicar:
+
+Nome
+Descrição
+Doença que previne
+Data prevista
+Data aplicada
+Local de aplicação
+Lote
+5. Calendário Vacinal
+
+Visualização mensal.
+
+Exemplo:
+
+Julho 2026
+
+15 - Pentavalente
+20 - Febre Amarela
+6. Lembretes
+
+Notificações Push:
+
+📲 "A vacina Tríplice Viral está prevista para amanhã."
+
+📲 "A vacina Febre Amarela está atrasada há 5 dias."
+
+7. Histórico
+
+Linha do tempo:
+
+2024
+✔ BCG
+✔ Hepatite B
+
+2025
+✔ Pentavalente
+
+2026
+⏳ Febre Amarela
+📂 Estrutura das Telas
+Login
+│
+├── Dashboard
+│
+├── Crianças
+│   ├── Cadastro
+│   └── Editar
+│
+├── Carteira Digital
+│   └── Detalhes da Vacina
+│
+├── Calendário
+│
+├── Histórico
+│
+└── Perfil
+🏗️ Estrutura Angular
+src/
+|
+├── app/
+│
+├── pages/
+│   ├── login
+│   ├── dashboard
+│   ├── children
+│   ├── vaccines
+│   ├── calendar
+│   ├── history
+│   └── profile
+│
+├── services/
+│   ├── auth.service.ts
+│   ├── child.service.ts
+│   └── vaccine.service.ts
+│
+├── models/
+│   ├── child.ts
+│   └── vaccine.ts
+│
+└── guards/
+🗄️ Modelo de Dados
+Criança
+export interface Child {
+  id: number;
+  name: string;
+  birthDate: Date;
+  gender: string;
+  photo: string;
+}
+Vacina
+export interface Vaccine {
+  id: number;
+  name: string;
+  description: string;
+  scheduledDate: Date;
+  appliedDate?: Date;
+  status: string;
+}
+🎨 Design
+
+Cores:
+
+Azul Claro (#4A90E2)
+Verde Saúde (#2ECC71)
+Branco (#FFFFFF)
+
+Ícones Ionic:
+
+person
+medical
+calendar
+notifications
+home
+🚀 Diferenciais
+QR Code da carteira digital
+Compartilhamento em PDF
+Sincronização em nuvem
+Múltiplas crianças por responsável
+Integração futura com postos de saúde
+Tecnologias
+Ionic Framework
+Angular 20
+TypeScript
+Capacitor
+Firebase Authentication
+Firestore
+Firebase Cloud Messaging (Push Notification)
+
+Essa arquitetura é suficiente para um MVP de startup e pode evoluir facilmente para uma plataforma completa de saúde infantil.
+
+
+Com os requisitos fornecidos, sua solução pode se destacar bastante na avaliação se você apresentar não apenas as telas, mas também as decisões de produto, UX e arquitetura.
+
+🩺 VacinaKids - Plataforma de Acompanhamento Vacinal Infantil
+Objetivo
+
+Permitir que pais e responsáveis acompanhem facilmente a situação vacinal de seus filhos, recebam alertas sobre vacinas pendentes e tenham acesso a campanhas de vacinação vigentes.
+
+🎨 Identidade Visual
+
+Paleta obrigatória:
+
+Cor	Uso
+#ABC270	Sucesso / Vacinas em dia
+#FEC868	Atenção
+#FDA769	Pendência / Atraso
+#473C33	Textos e menus
+Conceito
+
+Visual amigável e infantil:
+
+Ícones ilustrativos
+Cards coloridos
+Avatar da criança
+Navegação simples
+📱 Estrutura das Telas
+Login
+Email
+Senha
+Google Login (Firebase Auth)
+Dashboard
+
+Ao entrar:
+
+Olá, Amanda 👋
+
+Família Silva
+--------------------
+
+👦 Pedro - Em dia
+👧 Maria - 1 vacina pendente
+
+Campanha ativa:
+Vacinação contra Influenza
+
+Cards:
+
+Crianças cadastradas
+Vacinas pendentes
+Campanhas ativas
+Próximas vacinas
+👶 Tela de Crianças
+
+Lista de filhos cadastrados
+
+Pedro Silva
+3 anos
+🟢 Em dia
+
+Maria Silva
+5 anos
+🟠 1 pendência
+
+Botão:
+
+➕ Adicionar criança
+
+👧 Perfil da Criança
+
+Dados:
+
+Nome
+Data nascimento
+Idade calculada automaticamente
+Foto
+
+Resumo:
+
+Status Vacinal
+
+🟢 12 aplicadas
+🟡 1 prevista
+🔴 1 atrasada
+💉 Carteira Digital
+
+Lista completa:
+
+BCG
+✔ Aplicada
+
+Hepatite B
+✔ Aplicada
+
+Tríplice Viral
+⚠ Prevista
+
+Febre Amarela
+❌ Atrasada
+
+Indicadores:
+
+Verde = Aplicada
+Amarelo = Prevista
+Laranja = Atrasada
+📅 Histórico Vacinal
+
+Timeline:
+
+2024
+
+✔ BCG
+✔ Hepatite B
+
+2025
+
+✔ Pentavalente
+
+2026
+
+⚠ Tríplice Viral
+📢 Campanhas de Vacinação
+
+Tela exclusiva
+
+Exemplo:
+
+Campanha Influenza 2026
+
+Público:
+Crianças de 6 meses a 5 anos
+
+Período:
+01/05 até 31/08
+
+Card com:
+
+Nome
+Público-alvo
+Data início
+Data fim
+Descrição
+🚨 Pendências Vacinais
+
+Tela importante para atender o Cenário 2.
+
+Lista:
+
+Maria Silva
+
+❌ Febre Amarela
+Prevista em:
+12/06/2026
+
+Atrasada há:
+7 dias
+
+Badge vermelha.
+
+🔥 Cenários Avaliados
+Cenário 1
+
+Vacinas realizadas e pendentes
+
+Solução:
+
+Status visual
+Timeline
+Dashboard
+Cenário 2
+
+Vacina atrasada
+
+Solução:
+
+Card vermelho
+Contador de dias em atraso
+Notificação push
+Cenário 3
+
+Campanha ativa
+
+Solução:
+
+Banner no Dashboard
+Tela exclusiva de campanhas
+Cenário 4
+
+Múltiplos filhos
+
+Solução:
+
+Lista de crianças
+Histórico individual
+Status independente
+🗄️ Estrutura Firestore
+Responsáveis
+{
+  "id": "001",
+  "nome": "Amanda Silva",
+  "email": "amanda@email.com"
+}
+Crianças
+{
+  "id": "c001",
+  "responsavelId": "001",
+  "nome": "Pedro",
+  "nascimento": "2023-01-10"
+}
+Vacinas
+{
+  "id": "v001",
+  "nome": "BCG",
+  "idadeMeses": 0
+}
+Aplicações
+{
+  "criancaId": "c001",
+  "vacinaId": "v001",
+  "dataAplicacao": "2023-01-15",
+  "status": "aplicada"
+}
+Campanhas
+{
+  "titulo": "Influenza 2026",
+  "inicio": "2026-05-01",
+  "fim": "2026-08-31",
+  "publico": "6 meses a 5 anos"
+}
+🏗️ Estrutura Angular
+src/app
+
+├── pages
+│   ├── login
+│   ├── dashboard
+│   ├── children
+│   ├── child-details
+│   ├── vaccines
+│   ├── campaigns
+│   ├── history
+│
+├── services
+│   ├── auth.service
+│   ├── child.service
+│   ├── vaccine.service
+│   ├── campaign.service
+│
+├── models
+│   ├── child.ts
+│   ├── vaccine.ts
+│   └── campaign.ts
+⭐ Diferenciais para ganhar pontos
+
+✅ Firebase Authentication
+
+✅ Firestore
+
+✅ Firebase Hosting
+
+✅ Notificações Push
+
+✅ QR Code da carteira vacinal
+
+✅ Exportação PDF
+
+✅ Dashboard com indicadores gráficos
+
+✅ Modo responsivo (Desktop, Tablet e Mobile)
+
+Essa proposta atende todos os cenários obrigatórios e utiliza os diferenciais sugeridos no desafio, mantendo
+

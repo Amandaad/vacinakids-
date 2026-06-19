@@ -1,0 +1,45 @@
+<ion-content>
+  <div class="history-container">
+    <div class="page-header">
+      <h1>📊 Histórico Vacinal</h1>
+    </div>
+
+    <!-- Child Selector -->
+    <div *ngIf="children.length > 1" class="child-selector">
+      <select [(ngModel)]="selectedChild" (ngModelChange)="selectChildAndLoadHistory($event)">
+        <option *ngFor="let child of children" [ngValue]="child">
+          {{ child.name }}
+        </option>
+      </select>
+    </div>
+
+    <!-- Loading Indicator -->
+    <div *ngIf="isLoading" class="loading">
+      <p>Carregando histórico...</p>
+    </div>
+
+    <!-- Timeline -->
+    <div *ngIf="!isLoading && selectedChild" class="vaccine-timeline">
+      <div *ngFor="let year of getYearKeys()" class="timeline-year">
+        <h3 class="year-header">{{ year }}</h3>
+
+        <div class="vaccines-in-year">
+          <div *ngFor="let vaccine of groupedByYear[year]" class="timeline-item">
+            <div class="timeline-marker" [style.background-color]="getStatusColor(vaccine.status)">
+              ✔
+            </div>
+            <div class="timeline-content">
+              <h4>{{ vaccine.name }}</h4>
+              <p class="vaccine-date">{{ vaccine.appliedDate | date:'dd \'de\' MMMM' }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Empty State -->
+    <div *ngIf="!isLoading && selectedChild && vaccineHistory.length === 0" class="empty-state">
+      <p>Nenhuma vacina registrada no histórico</p>
+    </div>
+  </div>
+</ion-content>

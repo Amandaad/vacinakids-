@@ -1,0 +1,198 @@
+$color-success: #ABC270;
+$color-text: #473C33;
+$color-white: #FFFFFF;
+
+.login-container {
+  background: linear-gradient(135deg, #f5f9f5 0%, #f0f7f0 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 20px;
+
+  .login-wrapper {
+    background-color: $color-white;
+    border-radius: 15px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    padding: 40px 30px;
+
+    .logo-section {
+      text-align: center;
+      margin-bottom: 40px;
+
+      .app-title {
+        font-size: 36px;
+        color: $color-success;
+        margin: 0 0 5px 0;
+        font-weight: 700;
+      }
+
+      .app-subtitle {
+        font-size: 14px;
+        color: #999;
+        margin: 0;
+      }
+    }
+
+    .login-form {
+      .error-message {
+        padding: 12px;
+        background-color: #ffe5e5;
+        border-left: 4px solid #FDA769;
+        border-radius: 8px;
+        color: $color-text;
+        font-size: 14px;
+        margin-bottom: 20px;
+      }
+
+      .form-group {
+        margin-bottom: 18px;
+
+        label {
+          display: block;
+          font-weight: 600;
+          color: $color-text;
+          font-size: 13px;
+          margin-bottom: 6px;
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
+        }
+
+        input {
+          width: 100%;
+          padding: 12px 15px;
+          border: 2px solid #ddd;
+          border-radius: 8px;
+          font-size: 14px;
+          font-family: inherit;
+          transition: all 0.3s ease;
+          box-sizing: border-box;
+
+          &:focus {
+            outline: none;
+            border-color: $color-success;
+            box-shadow: 0 0 0 3px rgba(171, 194, 112, 0.1);
+          }
+
+          &:disabled {
+            background-color: #f5f5f5;
+            cursor: not-allowed;
+          }
+        }
+      }
+
+      .login-button {
+        width: 100%;
+        padding: 14px;
+        background-color: $color-success;
+        color: $color-white;
+        border: none;
+        border-radius: 8px;
+        font-weight: 700;
+        font-size: 16px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        margin-bottom: 20px;
+
+        &:hover:not(:disabled) {
+          background-color: darken($color-success, 10%);
+          transform: translateY(-2px);
+          box-shadow: 0 5px 15px rgba(171, 194, 112, 0.3);
+        }
+
+        &:disabled {
+          opacity: 0.7;
+          cursor: not-allowed;
+        }
+      }
+
+      .divider {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin: 20px 0;
+
+        &::before,
+        &::after {
+          content: '';
+          flex: 1;
+          height: 1px;
+          background-color: #ddd;
+        }
+
+        span {
+          color: #999;
+          font-size: 13px;
+          font-weight: 500;
+        }
+      }
+
+      .google-login-button {
+        width: 100%;
+        padding: 14px;
+        background-color: #f5f5f5;
+        color: $color-text;
+        border: 2px solid #ddd;
+        border-radius: 8px;
+        font-weight: 600;
+        font-size: 14px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        margin-bottom: 20px;
+
+        &:hover:not(:disabled) {
+          background-color: #efefef;
+          border-color: $color-success;
+        }
+
+        &:disabled {
+          opacity: 0.7;
+          cursor: not-allowed;
+        }
+
+        .google-icon {
+          font-size: 18px;
+        }
+      }
+
+      .signup-link {
+        text-align: center;
+        margin: 0;
+        color: #999;
+        font-size: 13px;
+
+        a {
+          color: $color-success;
+          text-decoration: none;
+          font-weight: 600;
+
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .login-container {
+    .login-wrapper {
+      padding: 30px 20px;
+
+      .logo-section {
+        margin-bottom: 30px;
+
+        .app-title {
+          font-size: 28px;
+        }
+      }
+    }
+  }
+}

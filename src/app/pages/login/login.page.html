@@ -1,0 +1,61 @@
+<ion-content class="login-container">
+  <div class="login-wrapper">
+    <div class="logo-section">
+      <h1 class="app-title">VacinaKids</h1>
+      <p class="app-subtitle">Acompanhamento de Vacinação Infantil</p>
+    </div>
+
+    <div class="login-form">
+      <div *ngIf="errorMessage" class="error-message">
+        {{ errorMessage }}
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input 
+          type="email" 
+          id="email" 
+          placeholder="seu@email.com"
+          [(ngModel)]="email"
+          [disabled]="isLoading"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="password">Senha</label>
+        <input 
+          type="password" 
+          id="password"
+          placeholder="••••••••"
+          [(ngModel)]="password"
+          [disabled]="isLoading"
+        />
+      </div>
+
+      <button 
+        class="login-button"
+        (click)="onLogin()"
+        [disabled]="isLoading"
+      >
+        {{ isLoading ? 'Entrando...' : 'Entrar' }}
+      </button>
+
+      <div class="divider">
+        <span>ou</span>
+      </div>
+
+      <button 
+        class="google-login-button"
+        (click)="onGoogleLogin()"
+        [disabled]="isLoading"
+      >
+        <span class="google-icon">🔐</span>
+        Entrar com Google
+      </button>
+
+      <p class="signup-link">
+        Não tem conta? <a href="#">Criar conta</a>
+      </p>
+    </div>
+  </div>
+</ion-content>

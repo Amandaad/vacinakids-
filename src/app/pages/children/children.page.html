@@ -1,0 +1,58 @@
+<ion-content>
+  <div class="children-container">
+    <div class="page-header">
+      <h1>Meus Filhos</h1>
+      <button (click)="toggleAddForm()" class="add-button">➕ Adicionar Criança</button>
+    </div>
+
+    <!-- Add Child Form (placeholder) -->
+    <div *ngIf="showAddForm" class="add-form">
+      <p>Formulário de cadastro de criança</p>
+    </div>
+
+    <!-- Loading Indicator -->
+    <div *ngIf="isLoading" class="loading">
+      <p>Carregando...</p>
+    </div>
+
+    <!-- Children List -->
+    <div *ngIf="!isLoading && children.length > 0" class="children-list">
+      <div *ngFor="let child of children" class="child-card" [style.border-left-color]="getStatusColor(child)">
+        <div class="child-card-header">
+          <div class="child-name">
+            <h3>{{ child.name }}</h3>
+            <p class="age">{{ calculateAge(child.birthDate) }}</p>
+          </div>
+          <div class="status-badge" [style.background-color]="getStatusColor(child)">
+            {{ child.vaccinesOverdue > 0 ? '🟠' : '🟢' }}
+          </div>
+        </div>
+
+        <div class="child-status-info">
+          <span>{{ getStatusText(child) }}</span>
+        </div>
+
+        <div class="child-stats">
+          <div class="stat">
+            <span class="stat-value">{{ child.vaccinesApplied }}</span>
+            <span class="stat-label">Aplicadas</span>
+          </div>
+          <div class="stat">
+            <span class="stat-value">{{ child.vaccinesPending }}</span>
+            <span class="stat-label">Previstas</span>
+          </div>
+          <div class="stat">
+            <span class="stat-value">{{ child.vaccinesOverdue }}</span>
+            <span class="stat-label">Atrasadas</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Empty State -->
+    <div *ngIf="!isLoading && children.length === 0" class="empty-state">
+      <p>Nenhuma criança cadastrada</p>
+      <button (click)="toggleAddForm()" class="add-button">Adicionar Criança</button>
+    </div>
+  </div>
+</ion-content>

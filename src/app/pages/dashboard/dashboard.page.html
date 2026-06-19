@@ -1,0 +1,90 @@
+<ion-content>
+  <div class="dashboard-container">
+    <!-- Header Greeting -->
+    <div class="greeting-section">
+      <h1>Olá, {{ parentName }}! 👋</h1>
+      <p class="family-name">Família {{ familyName }}</p>
+    </div>
+
+    <!-- Children Quick Selection -->
+    <div class="children-selector">
+      <div *ngFor="let child of children" 
+           (click)="selectChild(child)"
+           class="child-badge"
+           [ngClass]="{'active': selectedChild?.id === child.id}">
+        <div class="child-status">
+          {{ child.name }}
+          <span [style.color]="child.vaccinesOverdue > 0 ? '#FDA769' : '#ABC270'">
+            {{ child.vaccinesOverdue > 0 ? '🟠' : '🟢' }}
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Selected Child Section -->
+    <div *ngIf="selectedChild" class="child-main-section">
+      <div class="child-header">
+        <img *ngIf="selectedChild.photo" [src]="selectedChild.photo" alt="Foto de {{ selectedChild.name }}" class="child-photo">
+        <div class="child-info">
+          <h2>{{ selectedChild.name }}</h2>
+          <p class="age">{{ calculateAge(selectedChild.birthDate) }}</p>
+        </div>
+      </div>
+
+      <!-- Vaccine Status Cards -->
+      <div class="vaccine-status-grid">
+        <div class="status-card applied">
+          <div class="status-icon">✔</div>
+          <div class="status-number">{{ selectedChild.vaccinesApplied }}</div>
+          <div class="status-label">Aplicadas</div>
+        </div>
+
+        <div class="status-card pending">
+          <div class="status-icon">⏳</div>
+          <div class="status-number">{{ selectedChild.vaccinesPending }}</div>
+          <div class="status-label">Previstas</div>
+        </div>
+
+        <div class="status-card overdue">
+          <div class="status-icon">❌</div>
+          <div class="status-number">{{ selectedChild.vaccinesOverdue }}</div>
+          <div class="status-label">Atrasadas</div>
+        </div>
+      </div>
+
+      <!-- Active Campaign -->
+      <div *ngIf="activeCampaigns.length > 0" class="campaign-banner">
+        <h3>📢 Campanha Ativa</h3>
+        <div class="campaign-card">
+          <p class="campaign-title">{{ activeCampaigns[0].titulo }}</p>
+          <p class="campaign-period">{{ activeCampaigns[0].inicio | date:'dd/MM/yyyy' }} até {{ activeCampaigns[0].fim | date:'dd/MM/yyyy' }}</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Total Pendencies Alert -->
+    <div *ngIf="getTotalPendencies() > 0" class="pendencies-alert">
+      <p>⚠️ {{ getTotalPendencies() }} vacina(s) pendente(s) entre seus filhos</p>
+    </div>
+
+    <!-- Quick Access Cards -->
+    <div class="quick-access-grid">
+      <div class="quick-card">
+        <span class="icon">👨‍👩‍👧‍👦</span>
+        <span class="label">Crianças</span>
+      </div>
+      <div class="quick-card">
+        <span class="icon">💉</span>
+        <span class="label">Carteira</span>
+      </div>
+      <div class="quick-card">
+        <span class="icon">📅</span>
+        <span class="label">Calendário</span>
+      </div>
+      <div class="quick-card">
+        <span class="icon">📊</span>
+        <span class="label">Histórico</span>
+      </div>
+    </div>
+  </div>
+</ion-content>

@@ -1,0 +1,99 @@
+<ion-content>
+  <div class="child-details-container">
+    <!-- Loading Indicator -->
+    <div *ngIf="isLoading" class="loading">
+      <p>Carregando informações...</p>
+    </div>
+
+    <!-- Child Information -->
+    <div *ngIf="!isLoading && child" class="child-info-section">
+      <div class="child-header">
+        <img *ngIf="child.photo" [src]="child.photo" alt="Foto de {{ child.name }}" class="child-photo">
+        <div class="child-basic-info">
+          <h1>{{ child.name }}</h1>
+          <p class="age">{{ calculateAge(child.birthDate) }}</p>
+          <p class="birth-date">Nascido em: {{ child.birthDate | date:'dd/MM/yyyy' }}</p>
+        </div>
+      </div>
+
+      <!-- Child Stats Cards -->
+      <div class="child-stats-cards">
+        <div class="stat-card">
+          <div class="stat-value">{{ child.vaccinesApplied }}</div>
+          <div class="stat-label">Aplicadas</div>
+          <div class="stat-color" style="background-color: #ABC270"></div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">{{ child.vaccinesPending }}</div>
+          <div class="stat-label">Previstas</div>
+          <div class="stat-color" style="background-color: #FEC868"></div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">{{ child.vaccinesOverdue }}</div>
+          <div class="stat-label">Atrasadas</div>
+          <div class="stat-color" style="background-color: #FDA769"></div>
+        </div>
+      </div>
+
+      <!-- Child Personal Data -->
+      <div class="child-data-section">
+        <h2>Dados Pessoais</h2>
+        <div class="data-grid">
+          <div class="data-item">
+            <label>Sexo</label>
+            <p>{{ child.gender }}</p>
+          </div>
+          <div class="data-item" *ngIf="child.weight">
+            <label>Peso</label>
+            <p>{{ child.weight }} kg</p>
+          </div>
+          <div class="data-item" *ngIf="child.height">
+            <label>Altura</label>
+            <p>{{ child.height }} cm</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Vaccines List by Status -->
+      <div class="vaccines-section">
+        <h2>Carteira de Vacinação</h2>
+
+        <!-- Applied Vaccines -->
+        <div *ngIf="groupVaccinesByStatus()['aplicada'].length > 0" class="vaccine-group">
+          <h3 class="group-title applied">✔ Aplicadas</h3>
+          <div *ngFor="let vaccine of groupVaccinesByStatus()['aplicada']" class="vaccine-card">
+            <div class="vaccine-status-icon" [style.background-color]="getStatusColor(vaccine.status)">✔</div>
+            <div class="vaccine-card-info">
+              <h4>{{ vaccine.name }}</h4>
+              <p class="vaccine-date" *ngIf="vaccine.appliedDate">{{ vaccine.appliedDate | date:'dd/MM/yyyy' }}</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pending Vaccines -->
+        <div *ngIf="groupVaccinesByStatus()['pendente'].length > 0" class="vaccine-group">
+          <h3 class="group-title pending">⏳ Previstas</h3>
+          <div *ngFor="let vaccine of groupVaccinesByStatus()['pendente']" class="vaccine-card">
+            <div class="vaccine-status-icon" [style.background-color]="getStatusColor(vaccine.status)">⏳</div>
+            <div class="vaccine-card-info">
+              <h4>{{ vaccine.name }}</h4>
+              <p class="vaccine-date" *ngIf="vaccine.scheduledDate">{{ vaccine.scheduledDate | date:'dd/MM/yyyy' }}</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Overdue Vaccines -->
+        <div *ngIf="groupVaccinesByStatus()['atrasada'].length > 0" class="vaccine-group">
+          <h3 class="group-title overdue">❌ Atrasadas</h3>
+          <div *ngFor="let vaccine of groupVaccinesByStatus()['atrasada']" class="vaccine-card alert">
+            <div class="vaccine-status-icon" [style.background-color]="getStatusColor(vaccine.status)">❌</div>
+            <div class="vaccine-card-info">
+              <h4>{{ vaccine.name }}</h4>
+              <p class="vaccine-date" *ngIf="vaccine.scheduledDate">Era para ser em {{ vaccine.scheduledDate | date:'dd/MM/yyyy' }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>
