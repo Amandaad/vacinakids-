@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Pendências Vacinais</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div *ngIf="isLoading">Carregando...</div>
+
+  <div *ngIf="!isLoading && entries.length === 0">Nenhuma pendência encontrada.</div>
+
+  <ion-list>
+    <ion-item *ngFor="let e of entries">
+      <ion-avatar slot="start">
+        <img *ngIf="e.child.photo" [src]="e.child.photo" />
+        <div *ngIf="!e.child.photo" class="avatar-initial">{{ e.child.name.charAt(0) }}</div>
+      </ion-avatar>
+      <ion-label>
+        <h3>{{ e.child.name }} — {{ e.vaccine.name }}</h3>
+        <p>Prevista em: {{ e.scheduledDate || '—' }}</p>
+      </ion-label>
+      <div slot="end" class="end-controls">
+        <ion-badge color="danger">{{ e.daysOverdue }}d</ion-badge>
+        <ion-button size="small" color="success" fill="outline" (click)="markApplied(e)">Marcar aplicada</ion-button>
+      </div>
+    </ion-item>
+  </ion-list>
+</ion-content>
