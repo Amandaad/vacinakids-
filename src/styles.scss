@@ -1,0 +1,55 @@
+/* Global Styles for Vacina Kids */
+
+:root {
+  --ion-color-primary: #0066cc;
+  --ion-color-primary-rgb: 0, 102, 204;
+  --ion-color-primary-contrast: #ffffff;
+  --ion-color-primary-contrast-rgb: 255, 255, 255;
+  --ion-color-primary-shade: #0052a3;
+  --ion-color-primary-tint: #1a75d9;
+
+  --ion-color-success: #2dd36f;
+  --ion-color-success-rgb: 45, 211, 111;
+  --ion-color-success-contrast: #000000;
+  --ion-color-success-contrast-rgb: 0, 0, 0;
+  --ion-color-success-shade: #28ba62;
+  --ion-color-success-tint: #42d77d;
+
+  --ion-color-warning: #ffc409;
+  --ion-color-warning-rgb: 255, 196, 9;
+  --ion-color-warning-contrast: #000000;
+  --ion-color-warning-contrast-rgb: 0, 0, 0;
+  --ion-color-warning-shade: #e0ac08;
+  --ion-color-warning-tint: #ffca22;
+
+  --ion-color-danger: #eb445c;
+  --ion-color-danger-rgb: 235, 68, 92;
+  --ion-color-danger-contrast: #ffffff;
+  --ion-color-danger-contrast-rgb: 255, 255, 255;
+  --ion-color-danger-shade: #cf3c4f;
+  --ion-color-danger-tint: #ed576b;
+}
+
+html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #f5f7fa;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;
+  margin: 0;
+}
+
+p {
+  margin: 0;
+}
